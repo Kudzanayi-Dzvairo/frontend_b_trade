@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Search from '../Components/Search'
+import { Route, Switch, withRouter } from "react-router-dom"
+
 
 class MainContainer extends Component {
 
@@ -7,6 +9,16 @@ class MainContainer extends Component {
         books: [],
         query: ''
     };
+
+
+
+    componentDidMount() {
+        Object.keys(this.props.user).length > 0
+            ?
+            this.setState({ books: [] })
+            : this.props.history.push("/login");
+       }
+
 
 
     search(){
@@ -35,7 +47,9 @@ class MainContainer extends Component {
 
 
     render(){
-        return(
+
+
+        return (
             <div>
             <h1>Main Container</h1>
             <Search value={this.state.query} handleChange={this.handleChange} handleKeyPress={this.handleKeyPress}/>
@@ -44,4 +58,4 @@ class MainContainer extends Component {
     }
 }
 
-export default MainContainer
+export default withRouter(MainContainer)
