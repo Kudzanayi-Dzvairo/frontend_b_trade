@@ -81,7 +81,7 @@ class App extends Component {
             <Route exact  path="/" render={()=> <MainContainer user={this.state.user} />} />
             <Route exact path="/signup" render={() => <Signup submitHandler={this.signupSubmitHandler} />} />
             <Route exact  path="/login" render={() => <Login submitHandler={this.loginSubmitHandler} />} />
-            <Route exact  path="/profile" Component={Profile} />
+            <Route exact  path="/profile" render ={() => <Profile />} />
         <Footer />
             </Switch>
       </div>

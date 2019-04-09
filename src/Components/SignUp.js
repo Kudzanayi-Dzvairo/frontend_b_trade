@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 class Signup extends React.Component {
     state = {
@@ -25,13 +25,13 @@ class Signup extends React.Component {
         return (
             <div className="signup-page">
                 <div className="form3">
-                    <h1>SIGN UP </h1>
+                    <h1>SIGN UP 🥕</h1>
                     <form onSubmit={this.submitHandler}>
                         <input
                             type="text"
-                            name="username"
-                            placeholder="username"
-                            value={this.state.username}
+                            name="name"
+                            placeholder="name"
+                            value={this.state.name}
                             onChange={this.changeHandler}
                         />
                        <input

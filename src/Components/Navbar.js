@@ -13,8 +13,8 @@ const Navbar = props => {
             <Link to="/profile">
                 <li>Profile</li>
             </Link>
-            <Link to="/signup">
-                <li>Sign Up</li>
+            <Link to="/trades">
+                <li>Trades</li>
             </Link>
             <Link to="/login">
                 <li>Log In</li>
