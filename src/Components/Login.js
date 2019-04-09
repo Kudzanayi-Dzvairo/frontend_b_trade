@@ -4,8 +4,7 @@ class Login extends Component {
 
     state = {
         name: "",
-        password: "",
-        email: ""
+        password: ""
     };
 
     changeHandler = (e) => {
@@ -13,17 +12,16 @@ class Login extends Component {
     };
 
     submitHandler = (e) => {
-        e.preventDefault()
-        console.log(this.state)
-       // { this.props.submitHandler(this.state)}
+        e.preventDefault();
+        console.log(this.state);
+       this.props.submitHandler(this.state);
         this.setState({name:"",
         password:"",
-        email:""
-        })
+        });
     };
 
     render() {
-        const { name, password, email} = this.state;
+        const { name, password} = this.state;
 
         return (
             <div>

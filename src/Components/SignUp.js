@@ -2,8 +2,7 @@ import React from "react";
 
 class Signup extends React.Component {
     state = {
-        name: "",
-        email:"",
+        username: "",
         password: ""
     };
 
@@ -18,8 +17,7 @@ class Signup extends React.Component {
         console.log('submitted')
         this.props.submitHandler(this.state);
         this.setState({
-            name: "",
-            email:"",
+            username: "",
             password: ""
         });
     };
@@ -27,13 +25,13 @@ class Signup extends React.Component {
         return (
             <div className="signup-page">
                 <div className="form3">
-                    <h1>SIGN UP 🥕</h1>
+                    <h1>SIGN UP </h1>
                     <form onSubmit={this.submitHandler}>
                         <input
                             type="text"
-                            name="name"
-                            placeholder="name"
-                            value={this.state.name}
+                            name="username"
+                            placeholder="username"
+                            value={this.state.username}
                             onChange={this.changeHandler}
                         />
                        <input

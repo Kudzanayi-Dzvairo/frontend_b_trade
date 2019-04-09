@@ -51,7 +51,6 @@ class MainContainer extends Component {
 
         return (
             <div>
-            <h1>Main Container</h1>
             <Search value={this.state.query} handleChange={this.handleChange} handleKeyPress={this.handleKeyPress}/>
             </div>
         )

@@ -4,6 +4,8 @@ import Footer from './Components/Footer'
 import Header from './Components/Header'
 import Login from './Components/Login'
 import Signup from './Components/SignUp'
+import Navbar from './Components/Navbar'
+import Profile from './Components/Profile'
 import { Route, Switch, withRouter } from 'react-router-dom'
 
 
@@ -53,16 +55,33 @@ class App extends Component {
     })
   };
 
+    loginSubmitHandler = userInfo => {
+        fetch("http://localhost:3000/api/v1/login", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                accepts: "application/json"
+            },
+            body: JSON.stringify({user: userInfo})
+        })
+            .then(resp => resp.json())
+            .then(userData => {
+                localStorage.setItem("token", userData.jwt);
+                this.setState({user: userData.user});
+                this.props.history.push("/home");
+            })
+    }
+
   render(){
 
     return (
       <div>
-      <Header />
-
+          <Navbar/>
             <Switch>
             <Route exact  path="/" render={()=> <MainContainer user={this.state.user} />} />
             <Route exact path="/signup" render={() => <Signup submitHandler={this.signupSubmitHandler} />} />
             <Route exact  path="/login" render={() => <Login submitHandler={this.loginSubmitHandler} />} />
+            <Route exact  path="/profile" Component={Profile} />
         <Footer />
             </Switch>
       </div>
