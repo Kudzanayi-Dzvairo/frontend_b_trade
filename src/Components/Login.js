@@ -1,46 +1,53 @@
-import React, { Component } from 'react'
+import React from "react";
+import { getAuth } from "../actions/userActions";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
-class Login extends Component {
-
+class Login extends React.Component {
     state = {
-        name: "",
+        username: "",
         password: ""
     };
 
-    changeHandler = (e) => {
-        this.setState({[e.target.name]:e.target.value})
-    };
-
-    submitHandler = (e) => {
-        e.preventDefault();
-        console.log(this.state);
-       this.props.submitHandler(this.state);
-        this.setState({name:"",
-        password:"",
+    //
+    handleChange = e => {
+        this.setState({
+            [e.target.placeholder]: e.target.value
         });
     };
 
+    handleSubmit = event => {
+        event.preventDefault();
+        if (this.props.getAuth(this.state)) {
+            this.props.history.push("/home");
+        }
+    };
     render() {
-        const { name, password} = this.state;
-
         return (
             <div className="signup-page">
-                <div className="form3">
-                <form onSubmit={this.submitHandler}>
-                    <div>
-                        <input type="text" name="name" placeholder="Name" value={name} onChange={this.changeHandler}/>
-                    </div>
-                    <div>
-                        <input type="password" name="password" placeholder="Password" value={password} onChange={this.changeHandler}/>
-                    </div>
-                    <input type="submit" value="Login"/>
+                <form onSubmit={this.handleSubmit}>
+                    <input
+                        type="text"
+                        value={this.state.username}
+                        onChange={this.handleChange}
+                        placeholder="username"
+                        name="username"
+                    />
+                    <input
+                        type="text"
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                        placeholder="password"
+                        name="password"
+                    />
+                    <input type="submit" value="Submit" />
                 </form>
-                </div>
             </div>
         );
     }
-
 }
 
-
-export default Login
+export default connect(
+    null,
+    { getAuth }
+)(withRouter(Login));

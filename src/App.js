@@ -3,90 +3,38 @@ import MainContainer from './Containers/MainContainer'
 import Footer from './Components/Footer'
 import Header from './Components/Header'
 import Login from './Components/Login'
+import Home from './Components/Home'
 import Signup from './Components/SignUp'
 import Navbar from './Components/Navbar'
+import Search from './Components/Search'
 import Profile from './Components/Profile'
 import { Route, Switch, withRouter } from 'react-router-dom'
+import { connect} from "react-redux";
+import Error from './Components/Error'
+import { checkToken } from './actions/userActions'
 
 
-class App extends Component {
+class App extends React.Component {
+    componentDidMount = () => {
+        let token = localStorage.token;
+        return token ? this.props.checkToken() : this.props.history.push("/login");
+    };
 
-  state = {
-    user:{}
-  };
-
-  componentDidMount = () => {
-    let token = localStorage.token;
-    token
-        ? fetch("http://localhost:3000/api/v1/current_user", {
-          method: "GET",
-          headers: {
-              "content-type": "application/json",
-              accepts: "application/json",
-              Authorization: `Bearer ${token}`
-          }
-
-        })
-            .then(resp => resp.json())
-            .then(user => {
-              this.setState({ user }, () => {
-                this.props.history.push("/");
-              });
-            })
-        : this.props.history.push("/signup")
+    render() {
+        return (
+            <div>
+                <Navbar />
+                <Switch>
+                    <Route exact path="/home" component={Home} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/signup" component={Signup} />
+                    <Route exact path="/logout" component={Home} />
+                    <Route exact path="/search" component={Search} />
+                    <Route path="/" component={Error} />
+                </Switch>
+            </div>
+        );
     }
-
-  signupSubmitHandler = (userInfo) => {
-    fetch("http://localhost:3000/api/v1/users", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        accepts: "application/json"
-      },
-      body: JSON.stringify({ user: userInfo })
-  })
-  .then(resp => resp.json())
-  .then( user => {
-      console.log(user)
-      this.setState({user}, () => {
-          localStorage.setItem("token", user.jwt);
-          this.props.history.push("/")
-      });
-    })
-  };
-
-    loginSubmitHandler = userInfo => {
-        fetch("http://localhost:3000/api/v1/login", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-                accepts: "application/json"
-            },
-            body: JSON.stringify({user: userInfo})
-        })
-            .then(resp => resp.json())
-            .then(userData => {
-                localStorage.setItem("token", userData.jwt);
-                this.setState({user: userData.user});
-                this.props.history.push("/home");
-            })
-    }
-
-  render(){
-
-    return (
-      <div>
-          <Navbar/>
-            <Switch>
-            <Route exact  path="/" render={()=> <MainContainer user={this.state.user} />} />
-            <Route exact path="/signup" render={() => <Signup submitHandler={this.signupSubmitHandler} />} />
-            <Route exact  path="/login" render={() => <Login submitHandler={this.loginSubmitHandler} />} />
-            <Route exact  path="/profile" render ={() => <Profile />} />
-        <Footer />
-            </Switch>
-      </div>
-    );
-  }
 }
 
-export default withRouter(App);
+export default connect(null, { checkToken })(withRouter(App))
