@@ -2,6 +2,7 @@ import React from "react";
 import { addUser } from "../actions/userActions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import {Form} from "semantic-ui-react";
 
 class Signup extends React.Component {
     state = {
@@ -24,25 +25,15 @@ class Signup extends React.Component {
     };
     render() {
         return (
-            <div className="signup-page">
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        value={this.state.username}
-                        onChange={this.handleChange}
-                        placeholder="username"
-                        name="username"
-                    />
-                    <input
-                        type="text"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        placeholder="password"
-                        name="password"
-                    />
-                    <input type="submit" value="Submit" />
-                </form>
-            </div>
+            <Form className="signup-page" onSubmit={this.handleSubmit}>
+                <Form.Group>
+                    <Form.Input label="username" name="username" value={this.state.username}
+                                onChange={this.handleChange}/>
+                    <Form.Input label="Password" type='password' name="password" value={this.state.password}
+                                onChange={this.handleChange} />
+                </Form.Group>
+                <Form.Button onSubmit={this.handleSubmit}>Submit</Form.Button>
+            </Form>
         );
     }
 }
