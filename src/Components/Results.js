@@ -5,8 +5,7 @@ import Button from './Button'
 const Results = (props) => {
     console.log(props)
     return(
-        <div className="row">
-            <div className="column">
+
                 <div className="card">
                      <Card.Group>
                         <Card>
@@ -19,8 +18,6 @@ const Results = (props) => {
                         </Card>
                      </Card.Group>
                 </div>
-            </div>
-        </div>
     )
 }
 

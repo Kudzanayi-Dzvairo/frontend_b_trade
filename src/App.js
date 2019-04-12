@@ -58,7 +58,7 @@ class App extends React.Component {
        //  console.log(e.target)
        // let newBook = [...this.state.books].filter()
        //  this.setState({book: newBook})
-        }
+    };
 
     render() {
 
@@ -67,14 +67,14 @@ class App extends React.Component {
             <div>
                 <Route component={Navbar} />
                 <Switch>
-                    <Route exact path="/home" c
-                           omponent={Home} />
+                    <Route exact path="/home"
+                           component={Home} />
                     <Route exact path="/profile"
                            component={Profile} />
                     <Route exact path="/login"
                            component={Login} />
-                    <Route exact path="/signup" c
-                           omponent={Signup} />
+                    <Route exact path="/signup"
+                           component={Signup} />
                     <Route exact
                            path="/logout"
                            component={Home} />

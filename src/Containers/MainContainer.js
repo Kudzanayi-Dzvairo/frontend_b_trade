@@ -7,21 +7,26 @@ import { Route, Switch, withRouter } from "react-router-dom"
 
 class MainContainer extends Component {
 
-
+    renderBooks(books) {
+        return books.map(bookObj => {
+            return (
+                <div className="col-sm-4">
+                    <Results book={bookObj} key={bookObj.id} handleClick={this.props.handleClick} />
+                </div>
+            )
+        })
+    }
 
     render(){
-
-        const arrayofBooks = this.props.books.map(bookObj => <Results book={bookObj} key={bookObj.id} handleClick={this.props.handleClick} />)
-        console.log(arrayofBooks)
+        const { value, handleChange, handleKeyPress, books } = this.props;
 
         return (
-
             <div>
-                {arrayofBooks > 0 ? {arrayofBooks} :
-                    <Search value={this.props.value} handleChange={this.props.handleChange} handleKeyPress={this.props.handleKeyPress}/>}
+                <Search value={value} handleChange={handleChange} handleKeyPress={handleKeyPress}/>
+                <div className="row">
+                    {this.renderBooks(books)}
+                </div>
             </div>
-
-
         )
     }
 }
