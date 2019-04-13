@@ -11,7 +11,12 @@ class MainContainer extends Component {
         return books.map(bookObj => {
             return (
                 <div className="col-sm-4">
-                    <Results book={bookObj} key={bookObj.id} handleClick={this.props.handleClick} />
+                    <Results
+                        book={bookObj}
+                        key={bookObj.id}
+                        handleClick={this.props.handleClick}
+                        handleClickAddTo={this.props.handleClickAddTo}
+                    />
                 </div>
             )
         })

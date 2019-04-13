@@ -10,6 +10,7 @@ import { connect} from "react-redux";
 import Error from './Components/Error'
 import { checkToken } from './actions/userActions'
 
+const API_URL = `http://localhost:3000/api/v1`;
 
 class App extends React.Component {
     state = {
@@ -60,6 +61,31 @@ class App extends React.Component {
        //  this.setState({book: newBook})
     };
 
+    handleClickAddTo (shelf, title, author, image, description, pageCount) {
+        console.log('handleClickAddTo()')
+        const data = {
+            "user_id": 1,
+            shelf,
+            "book": {
+                title,
+                author,
+                description,
+                "page_count": pageCount,
+                image
+            }
+        };
+
+        fetch(`${API_URL}/user_book`, {
+            method: "POST",
+            body: JSON.stringify(data)
+        }, )
+            .then(response =>  {
+                console.log('response successful')
+                console.log(response.json())
+            })
+
+    }
+
     render() {
 
         console.log(this.state.books)
@@ -84,6 +110,7 @@ class App extends React.Component {
                                handleChange={this.handleChange}
                                handleKeyPress={this.handleKeyPress}
                                handleClick={this.handleClick}
+                               handleClickAddTo={this.handleClickAddTo}
                                value={this.state.query}/>} />
                     <Route path="/" component={Error} />
                 </Switch>
@@ -92,4 +119,15 @@ class App extends React.Component {
     }
 }
 
-export default connect(null, { checkToken })(withRouter(App))
+const mapStateToProps = (state, props) => {
+
+    console.log('state')
+    console.log(state)
+
+    console.log('props')
+    console.log(props)
+
+    return state
+}
+
+export default connect(mapStateToProps, { checkToken })(withRouter(App))
