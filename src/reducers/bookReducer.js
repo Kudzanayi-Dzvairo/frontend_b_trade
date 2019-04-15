@@ -16,7 +16,7 @@ const initialState = {
 * 3. Profile Page
 *  - backend API endpoint to fetch all user books `/api/v1/user_books`
 *  - create redux async action `getUserBooks` that dispatchs an event and puts the users books in state
-*  
+*
 *  - style and do html for `Shelf` and `Profile` components
 *
 * 1. Finish Add To Shelf

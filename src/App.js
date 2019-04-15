@@ -60,7 +60,8 @@ class App extends React.Component {
             },
             body: JSON.stringify(body)
         }, )
-            .then(response => console.log(response.json())) // TODO handle promise
+            .then(response => response.json())
+            .then(console.log)// TODO handle promise
 
     }
 
