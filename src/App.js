@@ -9,6 +9,7 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import { connect} from "react-redux";
 import Error from './Components/Error'
 import { checkToken } from './actions/userActions'
+import { searchForBooks } from "./actions/bookActions";
 
 const API_URL = `http://localhost:3000/api/v1`;
 
@@ -19,26 +20,6 @@ class App extends React.Component {
         book:"",
         query: ''
     };
-    
-    search(){
-        let query = this.state.query
-        const BASE_URL = "https://www.googleapis.com/books/v1/volumes?q=" + query;
-        fetch(BASE_URL, {method:"GET"})
-            .then(response =>  response.json())
-            .then( books => {
-                console.log(books)
-                const mappedBooks = books.items.map(item => ({
-                    title : item.volumeInfo.title,
-                    author: item.volumeInfo.authors[0],
-                    image: item.volumeInfo.imageLinks.smallThumbnail,
-                    description: item.volumeInfo.description,
-                    pageCount: item.volumeInfo.pageCount,
-                    id: item.id
-                }));
-                this.setState({ books: mappedBooks})
-            })
-    }
-
 
     handleChange = e => {
         let query = e.target.value;
@@ -47,7 +28,8 @@ class App extends React.Component {
 
     handleKeyPress = e => {
         if(e.key === "Enter"){
-            this.search()
+            let query = this.state.query;
+            this.props.searchForBooks(query)
         }
     };
     componentDidMount = () => {
@@ -55,11 +37,7 @@ class App extends React.Component {
         return token ? this.props.checkToken() : this.props.history.push("/login");
     };
 
-    handleClick = (e, bookObj) => {
-       //  console.log(e.target)
-       // let newBook = [...this.state.books].filter()
-       //  this.setState({book: newBook})
-    };
+
 
     handleClickAddTo (shelf, title, author, image, description, pageCount) {
         console.log('handleClickAddTo()')
@@ -82,12 +60,13 @@ class App extends React.Component {
             },
             body: JSON.stringify(body)
         }, )
-            .then(response => console.log(response.json()))
+            .then(response => console.log(response.json())) // TODO handle promise
 
     }
 
     render() {
-        console.log(this.state.books)
+        const { books } = this.props;
+
         return (
             <div>
                 <Route component={Navbar} />
@@ -105,10 +84,9 @@ class App extends React.Component {
                            component={Home} />
                     <Route exact path="/search"
                            render={(props) => <MainContainer
-                               books={this.state.books}
+                               books={books}
                                handleChange={this.handleChange}
                                handleKeyPress={this.handleKeyPress}
-                               handleClick={this.handleClick}
                                handleClickAddTo={this.handleClickAddTo}
                                value={this.state.query}/>} />
                     <Route path="/" component={Error} />
@@ -120,14 +98,7 @@ class App extends React.Component {
 
 
 const mapStateToProps = (state, props) => {
-
-    console.log('state')
-    console.log(state)
-
-    console.log('props')
-    console.log(props)
-
-    return state
+    return state.book;
 }
 
-export default connect(mapStateToProps, { checkToken })(withRouter(App))
+export default connect(mapStateToProps, { checkToken, searchForBooks })(withRouter(App))

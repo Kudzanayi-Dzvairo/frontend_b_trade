@@ -4,6 +4,9 @@ import CurrentlyReading from './CurrentlyReading'
 
 class Profile extends Component {
 
+    // compnentDidMount() {
+    //     this.props.getUserBooks
+    // }
 
     render() {
         return (

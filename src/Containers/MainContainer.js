@@ -14,7 +14,6 @@ class MainContainer extends Component {
                     <Results
                         book={bookObj}
                         key={bookObj.id}
-                        handleClick={this.props.handleClick}
                         handleClickAddTo={this.props.handleClickAddTo}
                     />
                 </div>

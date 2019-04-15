@@ -6,17 +6,19 @@ import { BrowserRouter } from "react-router-dom";
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import user from "./reducers/userReducer";
+import userReducer from "./reducers/userReducer";
 import 'semantic-ui-css/semantic.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import reducer from './Redux'
+import bookReducer from "./reducers/bookReducer";
 
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
-    userReducer: user
+    user: userReducer,
+    book: bookReducer
 });
 
 const store = createStore(
