@@ -13,7 +13,7 @@ class Signup extends React.Component {
     //
     handleChange = e => {
         this.setState({
-            [e.target.placeholder]: e.target.value
+            [e.target.name]: e.target.value
         });
     };
 
@@ -37,6 +37,7 @@ class Signup extends React.Component {
         );
     }
 }
+
 
 export default connect(
     null,

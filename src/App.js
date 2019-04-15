@@ -63,7 +63,7 @@ class App extends React.Component {
 
     handleClickAddTo (shelf, title, author, image, description, pageCount) {
         console.log('handleClickAddTo()')
-        const data = {
+        const body = {
             "user_id": 1,
             shelf,
             "book": {
@@ -73,21 +73,20 @@ class App extends React.Component {
                 "page_count": pageCount,
                 image
             }
-        };
+        }
 
         fetch(`${API_URL}/user_book`, {
             method: "POST",
-            body: JSON.stringify(data)
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
         }, )
-            .then(response =>  {
-                console.log('response successful')
-                console.log(response.json())
-            })
+            .then(response => console.log(response.json()))
 
     }
 
     render() {
-
         console.log(this.state.books)
         return (
             <div>
@@ -118,6 +117,7 @@ class App extends React.Component {
         );
     }
 }
+
 
 const mapStateToProps = (state, props) => {
 

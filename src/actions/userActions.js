@@ -1,5 +1,5 @@
 export const createUser = userObj => {
-    return { type: "Create_User", payload:userObj}
+    return { type: "CREATE_USER", payload:userObj}
 };
 
 export const loginUser = userObj => {

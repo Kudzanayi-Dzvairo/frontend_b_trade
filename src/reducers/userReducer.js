@@ -6,7 +6,9 @@ const userReducer = (state=initialState, action) => {
  switch (action.type) {
      case "CREATE_USER":
          localStorage.setItem("token", action.payload.jwt);
-         return{...state, user: action.payload.user};
+         return{...state,
+             user: action.payload.user,
+         };
 
      case "LOGIN_USER":
          localStorage.setItem("token", action.payload.jwt)
