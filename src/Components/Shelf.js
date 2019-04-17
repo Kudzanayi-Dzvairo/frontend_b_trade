@@ -1,7 +1,10 @@
 import React from 'react'
 
-const Shelf = props => {
-    return <h1>Shelf</h1>
+class Shelf extends React.Component {
+    render() {
+        return <h1>Shelf</h1>
+    }
+
 }
 
 export default Shelf
