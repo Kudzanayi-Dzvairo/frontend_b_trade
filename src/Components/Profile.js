@@ -16,7 +16,7 @@ class Profile extends Component {
         return (
             <div>
                 <Card
-                    image='https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/03/twitteregg-920x584.jpg'
+                    image='https://cdn1.iconfinder.com/data/icons/education-2-1/256/Student_Reading-512.png'
                     header={user.user.username}
                     meta='Reader'
                 />
