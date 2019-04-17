@@ -5,6 +5,10 @@ import { Route, Switch, withRouter } from "react-router-dom"
 
 
 
+// <MainContainer sup={'hi'} runAFun={() => {alert('hi')}} />
+//
+// props.sup => "hi"
+// this.props.runAFunc() => alert('hi')
 class MainContainer extends Component {
 
     renderBooks(books) {
@@ -14,8 +18,7 @@ class MainContainer extends Component {
                     <Results
                         book={bookObj}
                         key={bookObj.id}
-                        handleClickAddTo={this.props.handleClickAddTo}
-                    />
+                        handleClickAddTo={(shelf, book) => this.props.handleClickAddTo(shelf, book, 'supppp')}/>
                 </div>
             )
         })

@@ -1,17 +1,29 @@
 export const createUser = userObj => {
-    return { type: "CREATE_USER", payload:userObj}
+    return {
+        type: "CREATE_USER",
+        payload:userObj
+    }
 };
 
 export const loginUser = userObj => {
-    return {type: "LOGIN_USER", payload: userObj}
+    return {
+        type: "LOGIN_USER",
+        payload: userObj
+    }
+
 }
 
 export const setUser = userObj => {
-    return { type: "SET_USER", payload: userObj };
+    return {
+        type: "SET_USER",
+        payload: userObj
+    };
 }
 
 export const logOut = userInfo => {
-    return {type: 'LOG-OUT'}
+    return {
+        type: 'LOG-OUT'
+    }
 }
 
 export const addUser = userInfo => {
@@ -26,6 +38,8 @@ export const addUser = userInfo => {
         })
             .then(resp => resp.json())
             .then(json => {
+                console.log(json)
+                localStorage.setItem("token", json.jwt)
                 dispatch(createUser(json));
             });
     };

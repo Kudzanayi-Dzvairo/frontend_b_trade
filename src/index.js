@@ -19,6 +19,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
     user: userReducer,
     book: bookReducer
+
+
 });
 
 const store = createStore(

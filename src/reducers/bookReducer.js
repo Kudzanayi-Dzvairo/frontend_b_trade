@@ -6,6 +6,10 @@ const initialState = {
 /*
 * To finish
 *
+*
+* * 1. Finish Add To Shelf
+*  - refactor handleClickAddTo to redux async action and dispatch event and put user books in state
+*
 * 2. More Details
 *  - create redux async action `showMoreDetails` that dispatches an event and puts the book to be viewed in store
 *  - add new route `/search/books/:bookId` and new component
@@ -19,8 +23,7 @@ const initialState = {
 *
 *  - style and do html for `Shelf` and `Profile` components
 *
-* 1. Finish Add To Shelf
-*  - refactor handleClickAddTo to redux async action and dispatch event and put user books in state
+
 *
 * 4. SignUp
 * - need to add a nav option that says `Sign Up` that links to `/signup`
@@ -34,7 +37,6 @@ const initialState = {
 const bookReducer = (state=initialState, action) => {
     switch (action.type) {
         case 'SEARCH_BOOKS':
-            console.log('books bitch')
             const payload = action.payload;
             const books = payload.items.map(item => ({
                 title : item.volumeInfo.title,
@@ -49,8 +51,8 @@ const bookReducer = (state=initialState, action) => {
 
         // Happens when user clciks `Add To`
         case 'ADD_TO_SHELF':
-
-            return { ...state }
+            console.log('added')
+            return { ...state, userBooks: [...state.userBooks, action.payload]  }
 
         // Happens when user loads profile and sees shelves
         case 'LOAD_SHELF':

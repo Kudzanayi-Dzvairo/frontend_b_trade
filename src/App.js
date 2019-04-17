@@ -9,15 +9,15 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import { connect} from "react-redux";
 import Error from './Components/Error'
 import { checkToken } from './actions/userActions'
-import { searchForBooks } from "./actions/bookActions";
+import { searchForBooks, addBookToShelf } from "./actions/bookActions";
 
-const API_URL = `http://localhost:3000/api/v1`;
 
-class App extends React.Component {
+
+class App extends Component {
     state = {
-        user:'',
+        user: '',
         books: [],
-        book:"",
+        book: "",
         query: ''
     };
 
@@ -27,7 +27,8 @@ class App extends React.Component {
     };
 
     handleKeyPress = e => {
-        if(e.key === "Enter"){
+        if (e.key === "Enter") {
+            console.log("HandleKeyPress", this.props)
             let query = this.state.query;
             this.props.searchForBooks(query)
         }
@@ -38,35 +39,38 @@ class App extends React.Component {
     };
 
 
+    handleClickAddTo = (shelf, book, greeting) => {
 
-    handleClickAddTo (shelf, title, author, image, description, pageCount) {
-        console.log('handleClickAddTo()')
         const body = {
-            "user_id": 1,
-            shelf,
+            "user_id": this.props.user.user.id,
+            shelf: shelf,
             "book": {
-                title,
-                author,
-                description,
-                "page_count": pageCount,
-                image
+                title: book.title,
+                author: book.author,
+                description: book.description,
+                "page_count": book.pageCount,
+                image: book.image
             }
         }
 
-        fetch(`${API_URL}/user_book`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(body)
-        }, )
-            .then(response => response.json())
-            .then(console.log)// TODO handle promise
-
+        this.props.addBookToShelf(body)
     }
 
+
+    // fetch(`${API_URL}/user_book`, {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json"
+    //     },
+    //     body: JSON.stringify(body)
+    // }, )
+    //     .then(response => response.json())
+    //     .then(console.log)// TODO handle promise
+// }
+
     render() {
-        const { books } = this.props;
+        const { book, user } = this.props;
+
 
         return (
             <div>
@@ -85,10 +89,10 @@ class App extends React.Component {
                            component={Home} />
                     <Route exact path="/search"
                            render={(props) => <MainContainer
-                               books={books}
+                               books={book.books}
                                handleChange={this.handleChange}
                                handleKeyPress={this.handleKeyPress}
-                               handleClickAddTo={this.handleClickAddTo}
+                               handleClickAddTo={(shelf, book, greeting) => this.handleClickAddTo(shelf, book, greeting )}
                                value={this.state.query}/>} />
                     <Route path="/" component={Error} />
                 </Switch>
@@ -99,7 +103,7 @@ class App extends React.Component {
 
 
 const mapStateToProps = (state, props) => {
-    return state.book;
+    return state
 }
 
-export default connect(mapStateToProps, { checkToken, searchForBooks })(withRouter(App))
+export default connect(mapStateToProps, { checkToken, searchForBooks, addBookToShelf })(withRouter(App))

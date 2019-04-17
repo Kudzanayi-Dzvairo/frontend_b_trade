@@ -6,9 +6,9 @@ const Results = (props) => {
     const { book } = props;
 
     const options = [
-        { key: 'Library', text: 'Library', value: 'library', onClick: (e) => props.handleClickAddTo('library', book.title, book.author, book.image, book.description, book.pageCount)},
-        { key: 'Trades', text: 'Trades', value: 'trades', onClick: (e) => props.handleClickAddTo('trades', book.title, book.author, book.image, book.description, book.pageCount) },
-        { key: 'Wishlist', text: 'Wishlist', value: 'wishlist', onClick: (e) => props.handleClickAddTo('wishlist', book.title, book.author, book.image, book.description, book.pageCount) },
+        { key: 'Library', text: 'Library', value: 'library', onClick: (e) => props.handleClickAddTo('library', book)},
+        { key: 'Trades', text: 'Trades', value: 'trades', onClick: (e) => props.handleClickAddTo('trades', book) },
+        { key: 'Wishlist', text: 'Wishlist', value: 'wishlist', onClick: (e) => props.handleClickAddTo('wishlist', book) },
     ];
 
     return (
