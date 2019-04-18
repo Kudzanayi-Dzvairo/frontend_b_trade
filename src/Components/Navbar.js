@@ -7,7 +7,7 @@ const Navbar = props => {
     return (
         <ul className="menubar" role="navigation">
             <Link to="/home">
-                <li>Home</li>
+                <li>BestSellers</li>
             </Link>
             <Link to="/search">
                 <li>Search</li>
