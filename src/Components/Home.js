@@ -17,8 +17,10 @@ class Home extends React.Component{
         })
             .then(response => response.json())
             .then(bSellers => {
+                console.log(bSellers)
                 const bestSellers = bSellers.results.map(item => ({
                     link: item.amazon_product_url,
+                    rank: item.rank,
                     weeksOnList: item.weeks_on_list || 'New this week!',
                     title: item.book_details[0].title,
                     description: item.book_details[0].description,
@@ -33,11 +35,12 @@ class Home extends React.Component{
 
     render() {
 
-        const books = this.state.bestSellers.map(item => <BestSellers books={item}/>)
+        const books = this.state.bestSellers.map(item => <BestSellers books={item} key={item.title}/>)
 
         return (
             <div id="masthead">
                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/387928/nyt-logo.png" height="80" id="nyt-logo"/>
+                <h1>NYT Best Seller List</h1>
                 {books}
             </div>
         )

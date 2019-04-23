@@ -2,22 +2,24 @@ import React from 'react'
 
 const BestSellers = (props) => {
 
-   const { title, description, author, weeksOnList, rankLast, link } = props.books
+   const { title, description, author, weeksOnList, rankLast, link, rank } = props.books
 
     console.log(props.books)
 
     return (
+        <div>
         <div id="best-seller-titles">
-        <div className="entry">
+        <div className="entry" nyt-rank={rank}>
             <img src="https://www.iconsdb.com/icons/preview/orange/book-xxl.png" className="book-cover"/>
             <h2><a href={link} target="_blank"><em>{title}</em></a></h2>
             <h4><em>By {author} </em></h4>
             <p>{description}</p>
-            <div class="stats">
+            <div className="stats">
                     <p>Last Week: {rankLast}</p>
                     <p>Weeks on list: {weeksOnList} </p>
                      </div>
             </div>
+        </div>
         </div>
 
     )
