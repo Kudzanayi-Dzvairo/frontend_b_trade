@@ -4,28 +4,32 @@ import { connect }  from "react-redux"
 import { logOut } from '../actions/userActions'
 
 const Navbar = props => {
+
+    
+
     return (
-        <ul className="menubar" role="navigation">
+        <ul className="menu" role="navigation">
+        <img  src="http://www.btrade-italy.com/wp-content/uploads/2014/04/LOGO-B-TRADE-jpg-270x272.jpg"/>
             <Link to="/home">
-                <li>BestSellers</li>
+                <li className='li'>BestSellers</li>
             </Link>
             <Link to="/search">
-                <li>Search</li>
+                <li className='li'>Search</li>
             </Link>
             <Link to="/profile">
-                <li>Profile</li>
+                <li className='li'>Profile</li>
             </Link>
             <Link to="/trades">
-                <li>Trades</li>
+                <li className='li'>Trades</li>
             </Link>
             <Link to="/login">
-                <li>Log In</li>
+                <li className='li'>Log In</li>
             </Link>
-            <Link>
-            <li onClick={() => {localStorage.removeItem("token"); props.history.push("/signup");}}>Sign Up</li>
+            <Link to="/signup">
+            <li className='li' onClick={() => {localStorage.removeItem("token"); props.history.push("/signup");}}>Sign Up</li>
             </Link>
             <Link to="/login">
-                <li onClick={() => props.logOut()}>Logout</li>
+                <li className='li' onClick={() => props.logOut()}>Logout</li>
             </Link>
         </ul>
     );

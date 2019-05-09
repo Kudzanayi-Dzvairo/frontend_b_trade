@@ -7,8 +7,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import userReducer from "./reducers/userReducer";
-import 'semantic-ui-css/semantic.min.css'
-import 'bootstrap/dist/css/bootstrap.css'
+
 
 import reducer from './Redux'
 import bookReducer from "./reducers/bookReducer";
