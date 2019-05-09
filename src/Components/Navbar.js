@@ -21,7 +21,9 @@ const Navbar = props => {
             <Link to="/login">
                 <li>Log In</li>
             </Link>
-            <li onClick={() => {localStorage.removeItem("token"); props.history.push("/signup");}}>LogOut</li>
+            <Link>
+            <li onClick={() => {localStorage.removeItem("token"); props.history.push("/signup");}}>Sign Up</li>
+            </Link>
             <Link to="/login">
                 <li onClick={() => props.logOut()}>Logout</li>
             </Link>

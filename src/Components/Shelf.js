@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from "react-redux";
 
 class Shelf extends React.Component {
     render() {
@@ -7,4 +8,9 @@ class Shelf extends React.Component {
 
 }
 
-export default Shelf
+const mapStateToProps = (state, props) => {
+    console.log(state)
+    return state
+}
+
+export default connect(mapStateToProps)(Shelf)

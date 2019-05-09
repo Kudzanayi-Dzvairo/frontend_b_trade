@@ -17,7 +17,6 @@ class Home extends React.Component{
         })
             .then(response => response.json())
             .then(bSellers => {
-                console.log(bSellers)
                 const bestSellers = bSellers.results.map(item => ({
                     link: item.amazon_product_url,
                     rank: item.rank,

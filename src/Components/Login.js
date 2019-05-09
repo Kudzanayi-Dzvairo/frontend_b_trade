@@ -2,7 +2,7 @@ import React from "react";
 import { getAuth } from "../actions/userActions";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-import {Form} from "semantic-ui-react";
+
 
 class Login extends React.Component {
     state = {
@@ -29,15 +29,13 @@ class Login extends React.Component {
         }
 
         return (
-            <Form className="signup-page" onSubmit={this.handleSubmit}>
-                <Form.Group>
-                    <Form.Input label="username" name="username" value={this.state.username}
+            <form onSubmit={this.handleSubmit}>
+                    <input label="username" name="username" value={this.state.username}
                                 onChange={this.handleChange}/>
-                    <Form.Input label="Password" type='password' name="password" value={this.state.password}
+                    <input label="Password" type='password' name="password" value={this.state.password}
                                 onChange={this.handleChange} />
-                </Form.Group>
-                <Form.Button onSubmit={this.handleSubmit}>Submit</Form.Button>
-            </Form>
+                <button onSubmit={this.handleSubmit}>Submit</button>
+            </form>
         );
     }
 }
