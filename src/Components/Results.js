@@ -12,7 +12,7 @@ const Results = (props) => {
     ];
 
     return (
-        <div className="card">
+        <div className="column">
              <Card.Group>
                 <Card>
                     <Card.Content>
