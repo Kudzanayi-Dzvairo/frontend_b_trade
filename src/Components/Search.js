@@ -5,7 +5,14 @@ const Search = (props) => {
     return (
         <div>
             <div>
-                <input type='text' placeholder="Search Book" value={props.value} onChange={props.handleChange} onKeyPress={props.handleKeyPress} />
+                <input 
+                className='centered'
+                type='text' 
+                placeholder="Search Book" 
+                value={props.value} 
+                onChange={props.handleChange} 
+                onKeyPress={props.handleKeyPress} 
+                />
             </div>
         </div>
     )

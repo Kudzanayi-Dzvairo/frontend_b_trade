@@ -29,13 +29,27 @@ class Login extends React.Component {
         }
 
         return (
-            <form className='form' onSubmit={this.handleSubmit}>
-                    <input label="username" name="username" value={this.state.username}
-                                onChange={this.handleChange}/>
-                    <input className='input' label="Password" type='password' name="password" value={this.state.password}
-                                onChange={this.handleChange} />
+            <div>
+                <h1 className="title">Welcome Back to B-Trade</h1>
+            <form className='centered' onSubmit={this.handleSubmit}>
+                    <input 
+                    placeholder="username" 
+                    name="username" 
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                    /><br/>
+                    <input 
+                    className='input' 
+                    placeholder="Password" 
+                    type='password' 
+                    name="password" 
+                    value={this.state.password}
+                    onChange={this.handleChange} 
+                    />
+                    <br/>
                 <button onSubmit={this.handleSubmit}>Submit</button>
             </form>
+            </div>
         );
     }
 }
