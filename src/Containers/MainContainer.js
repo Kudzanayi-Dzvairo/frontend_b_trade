@@ -14,7 +14,7 @@ class MainContainer extends Component {
     renderBooks(books) {
         return books.map(bookObj => {
             return (
-                <div className="col-sm-4" key={bookObj.id}>
+                <div key={bookObj.id}>
                     <Results
                         book={bookObj}
                         key={bookObj.id}

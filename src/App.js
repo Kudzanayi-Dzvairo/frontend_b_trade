@@ -28,7 +28,6 @@ class App extends Component {
 
     handleKeyPress = e => {
         if (e.key === "Enter") {
-            console.log("HandleKeyPress", this.props)
             let query = this.state.query;
             this.props.searchForBooks(query)
         }
@@ -39,7 +38,7 @@ class App extends Component {
     };
 
 
-    handleClickAddTo = (shelf, book, greeting) => {
+    handleClickAddTo = (shelf, book) => {
 
         const body = {
             "user_id": this.props.user.user.id,

@@ -1,41 +1,31 @@
 import React from 'react'
-import { Card, Icon, Image, Dropdown} from 'semantic-ui-react'
-import Button from './Button'
+import Select from 'react-select'
+
+
 
 const Results = (props) => {
-    const { book } = props;
+    const { book, handleClickAddTo } = props;
 
     const options = [
-        { key: 'Library', text: 'Library', value: 'library', onClick: (e) => props.handleClickAddTo('library', book)},
-        { key: 'Trades', text: 'Trades', value: 'trades', onClick: (e) => props.handleClickAddTo('trades', book) },
-        { key: 'Wishlist', text: 'Wishlist', value: 'wishlist', onClick: (e) => props.handleClickAddTo('wishlist', book) },
-    ];
+        {value: 'library', label: 'Library', onClick: (e) => handleClickAddTo('library', book)},
+        {value: 'wishlist', label: 'Wishlist', onClick: (e) => handleClickAddTo('wishlist',book)},
+        {value: 'trades', label: 'Trades', onClick: (e) => handleClickAddTo('trades',book)}
+    ]
 
     return (
         <div className="column">
-             <Card.Group>
-                <Card>
-                    <Card.Content>
-                       <Card.Header>{props.book.title}</Card.Header>
-                        <Card.Meta>{props.book.author}</Card.Meta>
-                        <Image src={props.book.image} />
-                        {/* TODO Rename props.handleClick to props.handleClickMoreDetails */}
-                        <Button size='mini' floated='right' onClick={(e) => props.handleClick(props.book)}>More Details</Button>
-                        <Button.Group color='teal' floated='right'>
-                            <Button>Add To</Button>
-                            <Dropdown
-                                as={Button}
-                                className='icon'
-                                floating
-                                options={options}
-                                trigger={<React.Fragment />}
-                            />
-                        </Button.Group>
-                      </Card.Content>
-                </Card>
-             </Card.Group>
+                <p>{book.title}</p>
+                <p>{book.author}</p>
+                <img src={book.image}/>
+                <Select className="select" options={options}/>
         </div>
     )
 }
 
 export default Results
+
+// const options = [
+//         { key: 'Library', text: 'Library', value: 'library', onClick: (e) => props.handleClickAddTo('library', book)},
+//         { key: 'Trades', text: 'Trades', value: 'trades', onClick: (e) => props.handleClickAddTo('trades', book) },
+//         { key: 'Wishlist', text: 'Wishlist', value: 'wishlist', onClick: (e) => props.handleClickAddTo('wishlist', book) },
+//     ];
